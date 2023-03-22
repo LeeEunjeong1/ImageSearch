@@ -1,4 +1,4 @@
-package com.example.imagesearch
+package com.example.imagesearch.ui
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
@@ -10,8 +10,11 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import com.example.imagesearch.R
 import com.example.imagesearch.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration

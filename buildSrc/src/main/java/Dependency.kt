@@ -5,7 +5,7 @@ object Versions {
 
 }
 object KTX {
-    const val CORE = "androidx.core:core-ktx:1.7.0"
+    const val CORE = "androidx.core:core-ktx:1.7.21"
     const val FRAGMENT = "androidx.fragment:fragment-ktx:1.4.1"
 }
 
@@ -22,8 +22,8 @@ object Navigation {
 
 
 object DaggerHilt {
-    const val DAGGER_HILT = "com.google.dagger:hilt-android:2.38.1"
-    const val DAGGER_HILT_COMPILER = "com.google.dagger:hilt-android-compiler:2.38.1"
+    const val DAGGER_HILT = "com.google.dagger:hilt-android:2.42"
+    const val DAGGER_HILT_COMPILER = "com.google.dagger:hilt-android-compiler:2.42"
     const val DAGGER_HILT_VIEW_MODEL = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
     const val DAGGER_HILT_ANDROIDX_COMPILER = "androidx.hilt:hilt-compiler:1.0.0"
 }

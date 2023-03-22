@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstFragment">
+    tools:context=".ui.FirstFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp">
-        <Button
-            android:id="@+id/button"
+        <ImageView
+            android:id="@+id/img"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="#FF9800"
             android:text="1"
+            android:src="@drawable/ic_search"
             app:layout_constraintEnd_toStartOf="@+id/edit_search"
-            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
         <EditText
@@ -26,8 +26,8 @@
             android:layout_height="wrap_content"
             android:imeOptions="actionSearch"
             app:layout_constraintEnd_toStartOf="@+id/btn_cancel"
-            app:layout_constraintHorizontal_weight="5"
-            app:layout_constraintStart_toEndOf="@+id/button"
+            app:layout_constraintHorizontal_weight="6"
+            app:layout_constraintStart_toEndOf="@+id/img"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
