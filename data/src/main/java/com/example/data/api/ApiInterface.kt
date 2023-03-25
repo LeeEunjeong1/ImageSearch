@@ -2,6 +2,7 @@ package com.example.data.api
 
 import com.example.data.model.ImageData
 import com.example.data.model.ResponseResult
+import com.example.data.model.VideoData
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
@@ -15,4 +16,12 @@ interface ApiInterface {
         @Query("page") page: Int,
         @Query("size") size: Int,
     ): ResponseResult<ImageData>
+    @GET("v2/search/vclip")
+    suspend fun getVideoList(
+        @Header("Authorization") key: String,
+        @Query("query") query: String,
+        @Query("sort") sort: String,
+        @Query("page") page: Int,
+        @Query("size") size: Int,
+    ): ResponseResult<VideoData>
 }

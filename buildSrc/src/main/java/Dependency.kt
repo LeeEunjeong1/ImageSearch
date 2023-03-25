@@ -42,3 +42,7 @@ object OkHttp {
 object Coroutines {
     const val COROUTINES = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0"
 }
+
+object Glide{
+    const val GLIDE = "com.github.bumptech.glide:glide:4.11.0"
+}

@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.imagesearch"
-        minSdk 24
+        minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -58,6 +58,6 @@ dependencies {
     implementation(Retrofit.CONVERTER_GSON)
     implementation(OkHttp.OKHTTP)
     implementation(OkHttp.LOGGING_INTERCEPTOR)
-    //코루틴
     implementation(Coroutines.COROUTINES)
+    implementation(Glide.GLIDE)
 }
