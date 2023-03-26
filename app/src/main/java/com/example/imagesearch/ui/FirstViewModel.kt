@@ -52,12 +52,12 @@ class FirstViewModel @Inject constructor(
             val imageList = mutableListOf<Image>()
             var imageResponse: List<Image>? = null
             var videoResponse: List<Image>? = null
-            Util.logMessage("videoIsEnd :: ${videoIsEnd.value}")
+
             if (imageIsEnd.value != true) {
-                imageResponse = requestImageList(imageRequest)
+                imageResponse = requestImageList("IMAGE", imageRequest)
             }
             if (videoIsEnd.value != true) {
-                videoResponse = requestVideoList(imageRequest)
+                videoResponse = requestImageList("VIDEO", imageRequest)
             }
             // 응답값 이미지 리스트 에 저장
             if (imageResponse != null) {
@@ -90,34 +90,28 @@ class FirstViewModel @Inject constructor(
         }
     }
 
-    private suspend fun requestImageList(requestData: ImageRequest): List<Image>? {
-        val imageResponse: ImageListDataResponse? = requestImageListUseCase.excute(
-            this@FirstViewModel,
-            ApiClient.KAKAO_RESTAPI_KEY,
-            requestData
-        )
+    // 이미지 요청 함수
+    private suspend fun requestImageList(type: String, requestData: ImageRequest): List<Image>? {
+        // 이미지/비디오 요청
+        val imageResponse: ImageListDataResponse? = if (type == "IMAGE") {
+            requestImageListUseCase.excute(
+                this@FirstViewModel,
+                ApiClient.KAKAO_RESTAPI_KEY,
+                requestData
+            )
+        } else {
+            requestVideoListUseCase.excute(
+                this@FirstViewModel,
+                ApiClient.KAKAO_RESTAPI_KEY,
+                requestData
+            )
+        }
         Util.logMessage("imageResponse :: $imageResponse")
         return if (imageResponse != null && imageResponse.meta.pageable_count != 0) {
             imageIsEnd.value = imageResponse.meta.is_end
             imageResponse.documents
         } else {
             imageIsEnd.value = true
-            null
-        }
-    }
-
-    private suspend fun requestVideoList(requestData: ImageRequest): List<Image>? {
-        val videoResponse: ImageListDataResponse? = requestVideoListUseCase.excute(
-            this@FirstViewModel,
-            ApiClient.KAKAO_RESTAPI_KEY,
-            requestData
-        )
-        Util.logMessage("videoResponse :: $videoResponse")
-        return if (videoResponse != null && videoResponse.meta.pageable_count != 0) {
-            videoIsEnd.value = videoResponse.meta.is_end
-            videoResponse.documents
-        } else {
-            videoIsEnd.value = true
             null
         }
     }

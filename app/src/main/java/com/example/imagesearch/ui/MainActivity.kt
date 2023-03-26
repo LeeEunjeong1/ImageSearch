@@ -5,10 +5,12 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.domain.utils.Util
 import com.example.imagesearch.R
 import com.example.imagesearch.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,22 +35,23 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         binding.fab.setOnClickListener { view ->
-            navController.navigate(
-                R.id.action_FirstFragment_to_SecondFragment
-            )
+
+            Util.logMessage("id :: ${getForegroundFragment()}")
+            if (getForegroundFragment() is FirstFragment) {
+                navController.navigate(
+                    R.id.action_FirstFragment_to_SecondFragment
+                )
+            }else{
+                navController.navigateUp(appBarConfiguration)
+            }
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
@@ -59,5 +62,10 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }
+    private fun getForegroundFragment(): Fragment? {
+        val navHostFragment: Fragment? =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main)
+        return navHostFragment?.childFragmentManager?.fragments?.get(0)
     }
 }

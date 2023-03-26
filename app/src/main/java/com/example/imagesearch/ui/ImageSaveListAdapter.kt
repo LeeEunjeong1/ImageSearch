@@ -14,9 +14,7 @@ import com.example.imagesearch.model.ImageSaveData
 import com.example.imagesearch.utils.StringUtil
 import kotlin.math.ceil
 
-class ImageListAdapter(
-    val onClickImage:(ImageSaveData) -> Unit
-): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ImageSaveListAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var itemList = ArrayList<ImageSaveData>()
 
     // 리스트 초기화
@@ -77,23 +75,6 @@ class ImageListAdapter(
                     val uri = imageData.thumbnail_url
                     Glide.with(itemView).load(uri).into(imageView)
                     dateTimeTextView.text = StringUtil.dateFormat(imageData.datetime.substring(0,19), "yyyy.MM.dd\nHH시 mm분")
-                    // 저장된 이미지 표시
-                    if(imageData.is_save){
-                        imageView.setColorFilter(Color.parseColor("#777777"), PorterDuff.Mode.MULTIPLY)
-                    }else{
-                        imageView.setColorFilter(Color.parseColor("#ffffff"), PorterDuff.Mode.MULTIPLY)
-                    }
-                    // 이미지 클릭시 -> 이미지 저장
-                    imageView.setOnClickListener {
-                        onClickImage(imageData)
-                        if(imageData.is_save){ // 이미 저장된 이미지 -> 저장 해제
-                            imageView.setColorFilter(Color.parseColor("#ffffff"), PorterDuff.Mode.MULTIPLY)
-                            imageData.is_save = false
-                        }else{
-                            imageView.setColorFilter(Color.parseColor("#777777"), PorterDuff.Mode.MULTIPLY)
-                            imageData.is_save = true
-                        }
-                    }
                 }
             }
         }

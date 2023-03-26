@@ -1,4 +1,4 @@
-package com.picaloca.picaloca.di
+package com.example.imagesearch.di
 
 import com.example.data.repository.RemoteDataSource
 import com.example.data.repository.RepositoryImpl

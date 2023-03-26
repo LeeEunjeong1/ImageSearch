@@ -4,6 +4,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 object StringUtil {
+    // 시간 포맷 함수
     fun dateFormat(time:String, format:String):String{
         if(time.isEmpty()) return ""
 

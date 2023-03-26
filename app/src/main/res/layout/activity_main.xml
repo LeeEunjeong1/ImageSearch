@@ -28,6 +28,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
+        app:backgroundTint="@color/my_light_primary"
         app:srcCompat="@android:drawable/ic_menu_save"
         android:contentDescription="@string/todo" />
 
